@@ -150,6 +150,9 @@ def logout_page(request):
 
 
 def detail_page(request, pk):
-    product = Product.objects.get(pk=pk)
-    context = {'product': product}
-    return render(request, "store/detail.html", context)
+	data = cartData(request)
+	cartItems = data['cartItems']
+
+	product = Product.objects.get(pk=pk)
+	context = {'product': product, 'cartItems':cartItems}
+	return render(request, "store/detail.html", context)
